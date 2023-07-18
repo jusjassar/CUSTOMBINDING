@@ -11,6 +11,8 @@ export class FilterComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+@Input('total') all:number=19;
+@Input() free:number=9;
+@Input() premium:number=10;
 }
 

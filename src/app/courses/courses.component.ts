@@ -45,7 +45,16 @@ export class CoursesComponent{
     }
   ]
 hello(){
-  
-}
 
+}
+totalCourses(){
+  return this.courses.length
+}
+freeCourses(){
+  return this.courses.filter(course => course.type==='Free'
+  ).length
+}
+premiumCourses(){
+  return this.courses.filter(course => course.type === 'Premium').length
+}
 }
