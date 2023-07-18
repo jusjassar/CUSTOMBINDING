@@ -3,9 +3,10 @@
     <app-filter
     [total]="totalCourses()"
     [premium]="premiumCourses()"
-    [free]="freeCourses()"></app-filter>
+    [free]="freeCourses()"
+    (radioSelectionToParent)="radioSelectionRcvdInParent($event)"></app-filter>
 </div>
-<div class="course-container" *ngFor="let course of courses">
+<div class="course-container" *ngFor="let course of selectedCourses">
     <div class="course-card">
         <div>
             <img [src]="course.image" style="width: 220px; height: 140px;">
