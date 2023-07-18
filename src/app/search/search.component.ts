@@ -12,12 +12,5 @@ export class SearchComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  enteredSerchValue: string = '';
 
-  @Output()
-  searchTextChanged: EventEmitter<string> = new EventEmitter<string>();
-
-  onSearchTextChanged(){
-    this.searchTextChanged.emit(this.enteredSerchValue)
-  }
 }
