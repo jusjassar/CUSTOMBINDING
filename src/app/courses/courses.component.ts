@@ -47,5 +47,9 @@ export class CoursesComponent{
 hello(){
   
 }
-
+radioButtonSelected:string=''
+radioButtonselectionFuncParent(radioButtonSelected:string){
+  console.log("From Parent  "+radioButtonSelected)
+  this.radioButtonSelected=radioButtonSelected
+}
 }
