@@ -12,9 +12,9 @@ export class FilterComponent implements OnInit {
   ngOnInit(): void {
     this.radioButtonSelectionToParent.emit(this.radioButtonSelection)
   }
-all:number=9;
-Free:number=3;
-Premium:number=6;
+@Input() all:number=9;
+@Input() Free:number=3;
+@Input() Premium:number=6;
 radioButtonSelection:string='All';
 @Output() radioButtonSelectionToParent:EventEmitter<string> = new EventEmitter;
 radioButtonSelectedFunc(radioButtonSelected:string){

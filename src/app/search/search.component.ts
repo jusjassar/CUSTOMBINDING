@@ -11,6 +11,11 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
   }
-
+  searchStrEntered:string='hello'
+  @Output() SearchStringToParent:EventEmitter<string> = new EventEmitter;
+  SearchBox(SearchString:string){
+    console.log(SearchString)
+    this.SearchStringToParent.emit(SearchString)
+  }
 
 }

@@ -1,6 +1,10 @@
 <div>
     <app-search></app-search>
     <app-filter 
+    [all]="totalCourses()"
+    [Free]="freeCourses()"
+    [Premium]="premiumCourses()"
+
     (radioButtonSelectionToParent)="radioButtonselectionFuncParent($event)"></app-filter>
 </div>
 <ng-container *ngFor="let course of courses">

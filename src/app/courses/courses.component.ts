@@ -45,11 +45,21 @@ export class CoursesComponent{
     }
   ]
 hello(){
-  
+
 }
-radioButtonSelected:string=''
-radioButtonselectionFuncParent(radioButtonSelected:string){
-  console.log("From Parent  "+radioButtonSelected)
-  this.radioButtonSelected=radioButtonSelected
+totalCourses(){
+  return this.courses.length
+}
+freeCourses(){
+  return this.courses.filter(course => course.type==='Free'
+  ).length
+}
+premiumCourses(){
+  return this.courses.filter(course => course.type === 'Premium').length
+}
+courseSelected:number=19;
+radioButtonSelected:string='All'
+radioButtonselectionFuncParent(radioSelectionRcvd:string){
+  this.radioButtonSelected = radioSelectionRcvd
 }
 }
