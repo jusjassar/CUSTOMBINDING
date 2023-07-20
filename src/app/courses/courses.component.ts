@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { courseModel } from './course.model';
 
 @Component({
   selector: 'app-courses',
   templateUrl: './courses.component.html',
   styleUrls: ['./courses.component.css']
 })
-export class CoursesComponent{
+export class CoursesComponent implements OnInit{
   courses = [
     { id:101, name:'JavaScript for beginners', author: 'John Heikela', duration: 48, type: 'Free', 
       price: 0.00, ratings: 3.5, image:'assets/courses/course-image-1.jpeg',
@@ -44,17 +45,25 @@ export class CoursesComponent{
       description: 'In this course you will learn about reactive web development using HTML & CSS. This course will start teaching you from basics of HTML & CSS and as you progress, you will learn all the advance concepts.'
     }
   ]
-hello(){
-
+ngOnInit(): void {
+  this.Searchedcourses = this.courses
 }
+hello(){}
 totalCourses(){
   return this.courses.length
 }
 freeCourses(){
-  return this.courses.filter(course => course.type==='Free'
-  ).length
+  return this.courses.filter(course => course.type==='Free').length
 }
 premiumCourses(){
   return this.courses.filter(course => course.type === 'Premium').length
 }
+searchStrRcvd:string='';
+Searchedcourses:courseModel[]=[];
+searchStrRcvdFunc(searchStrRcvd:string){
+//  console.log("From Parent   "+searchStrRcvd)
+ this.searchStrRcvd=searchStrRcvd.toLocaleLowerCase();
+}
+
+
 }
