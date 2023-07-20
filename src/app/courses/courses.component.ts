@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { courseModel } from './course.model';
 
 @Component({
   selector: 'app-courses',
@@ -66,15 +67,24 @@ export class CoursesComponent {
   premiumCourses() {
     return this.courses.filter(course => course.type === 'Premium').length
   }
-  selectedCourses: any = [];
+  selectedCourses: string = 'All'
   radioSelectionRcvdInParent(radioSelectionRcvd: string) {
     console.log("From Parent  " + radioSelectionRcvd)
-    if (radioSelectionRcvd === 'All') {
-      this.selectedCourses = this.courses
-      console.log(this.selectedCourses)
-    } else {
-      console.log(this.selectedCourses = this.courses.filter(course => course.type === radioSelectionRcvd))
+    this.selectedCourses = radioSelectionRcvd
+
+    // if (radioSelectionRcvd === 'All') {
+    //   this.selectedCourses = this.courses
+    //   // console.log(this.selectedCourses)
+    // } else {
+    //   this.selectedCourses = this.courses.filter(course => course.type === radioSelectionRcvd)
       
-    }
+    // }
+  }
+  searchedCourses:string='';
+  searchStrRcvdFunc(searchStrRcvd:string){
+    this.searchedCourses=searchStrRcvd
+    // console.log("from Parent  "+searchStrRcvd)
+    
+    // this.searchedCourses = this.selectedCourses.filter(course => course.name.toLowerCase().includes(searchStrRcvd.toLocaleLowerCase()))
   }
 }

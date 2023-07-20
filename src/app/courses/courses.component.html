@@ -1,26 +1,33 @@
 <div>
-    <app-search></app-search>
+    <app-search
+    (searchStrToParentEmitter)="searchStrRcvdFunc($event)"></app-search>
     <app-filter
     [total]="totalCourses()"
     [premium]="premiumCourses()"
     [free]="freeCourses()"
     (radioSelectionToParent)="radioSelectionRcvdInParent($event)"></app-filter>
 </div>
-<div class="course-container" *ngFor="let course of selectedCourses">
-    <div class="course-card">
-        <div>
-            <img [src]="course.image" style="width: 220px; height: 140px;">
-        </div>
-        <div class="course-name"><h4>{{course.name}}</h4></div>
-        <div class="course-description"><p>{{course.description.slice(0, 80)}}</p></div>
-        <div class="details">
-            <div class="course-type" [ngStyle]="{color: course.type==='Free' ? 'Green': 'Red'}">{{course.type}}</div>
-            <div class="course-price"><b>Price:</b>${{course.price}}</div>
-        </div>
-        <div class="course-buttons">
-            <button class="btn btn-buy" (click)="hello()">Buy Now</button>
-            <button class="btn btn-show">Show Details</button>
-        </div>
-    </div>
-</div>
+<ng-container *ngFor="let course of courses">
+    <div class="course-container" *ngIf="selectedCourses === 'All' || course.type === selectedCourses">
+        <ng-container *ngIf="searchedCourses==='' || course.name.toLowerCase().includes(searchedCourses)">
+            <div class="course-card">
+                <div>
+                    <img [src]="course.image" style="width: 220px; height: 140px;">
+                </div>
+                <div class="course-name"><h4>{{course.name}}</h4></div>
+                <div class="course-description"><p>{{course.description.slice(0, 80)}}</p></div>
+                <div class="details">
+                    <div class="course-type" [ngStyle]="{color: course.type==='Free' ? 'Green': 'Red'}">{{course.type}}</div>
+                    <div class="course-price"><b>Price:</b>${{course.price}}</div>
+                </div>
+                <div class="course-buttons">
+                    <button class="btn btn-buy" (click)="hello()">Buy Now</button>
+                    <button class="btn btn-show">Show Details</button>
+                </div>
+            </div>
+        
+        </ng-container>
+    </div>  
+</ng-container>
+
 
