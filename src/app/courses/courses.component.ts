@@ -67,24 +67,44 @@ export class CoursesComponent {
   premiumCourses() {
     return this.courses.filter(course => course.type === 'Premium').length
   }
-  selectedCourses: string = 'All'
+  selectedCourses: any = [];
+
+  searchTextRcvd: string = '';
+  radioSelectionRcvd: string = ''
   radioSelectionRcvdInParent(radioSelectionRcvd: string) {
     console.log("From Parent  " + radioSelectionRcvd)
-    this.selectedCourses = radioSelectionRcvd
+    this.radioSelectionRcvd = radioSelectionRcvd
+    if (radioSelectionRcvd === 'All' && this.searchTextRcvd === '') {
+      this.selectedCourses = this.courses
+    } else if (radioSelectionRcvd === 'All') {
+      this.selectedCourses = this.courses.filter(course => course.name.toLowerCase().includes(this.searchTextRcvd.toLowerCase()))
+    }
+    else {
 
-    // if (radioSelectionRcvd === 'All') {
-    //   this.selectedCourses = this.courses
-    //   // console.log(this.selectedCourses)
-    // } else {
-    //   this.selectedCourses = this.courses.filter(course => course.type === radioSelectionRcvd)
-      
-    // }
+      // console.log(this.searchTextRcvd + this.radioSelectionRcvd)
+      this.selectedCourses = this.courses.filter(course => course.type === this.radioSelectionRcvd
+        && course.name.toLocaleLowerCase().includes(this.searchTextRcvd.toLocaleLowerCase()))
+      console.log("I am in Filter Else  " + this.searchTextRcvd + "   " + radioSelectionRcvd)
+
+    }
   }
-  searchedCourses:string='';
-  searchStrRcvdFunc(searchStrRcvd:string){
-    this.searchedCourses=searchStrRcvd
-    // console.log("from Parent  "+searchStrRcvd)
-    
-    // this.searchedCourses = this.selectedCourses.filter(course => course.name.toLowerCase().includes(searchStrRcvd.toLocaleLowerCase()))
+
+  searchTextRcvdFunc(searchTextRcvd: string) {
+    this.searchTextRcvd = searchTextRcvd
+
+    if (this.radioSelectionRcvd === 'All' && searchTextRcvd === '') {
+      this.selectedCourses = this.courses
+    }
+    else if (this.radioSelectionRcvd === 'All') {
+      this.selectedCourses = this.courses.filter(course => course.name.toLowerCase().includes(this.searchTextRcvd.toLowerCase()))
+    }
+    else {
+      console.log("I am in search else  " + searchTextRcvd + "  " + this.radioSelectionRcvd)
+
+      this.selectedCourses = this.courses.filter(course => course.type === this.radioSelectionRcvd
+        && course.name.toLocaleLowerCase().includes(searchTextRcvd.toLocaleLowerCase()))
+    }
+
   }
+
 }

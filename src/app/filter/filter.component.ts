@@ -19,7 +19,7 @@ this.radioSelectionToParent.emit(this.coursesSelected)
   @Output() radioSelectionToParent: EventEmitter<string> = new EventEmitter;
 
   radioButtonSelected(radioSelection: string) {
-    console.log(radioSelection)
+    // console.log(radioSelection)
     this.radioSelectionToParent.emit(radioSelection)
   }
 }

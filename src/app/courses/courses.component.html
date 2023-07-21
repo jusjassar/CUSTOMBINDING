@@ -1,15 +1,13 @@
 <div>
     <app-search
-    (searchStrToParentEmitter)="searchStrRcvdFunc($event)"></app-search>
+    (searchTextToParentEmitter)="searchTextRcvdFunc($event)"></app-search>
     <app-filter
     [total]="totalCourses()"
     [premium]="premiumCourses()"
     [free]="freeCourses()"
     (radioSelectionToParent)="radioSelectionRcvdInParent($event)"></app-filter>
 </div>
-<ng-container *ngFor="let course of courses">
-    <div class="course-container" *ngIf="selectedCourses === 'All' || course.type === selectedCourses">
-        <ng-container *ngIf="searchedCourses==='' || course.name.toLowerCase().includes(searchedCourses)">
+    <div class="course-container" *ngFor="let course of selectedCourses">
             <div class="course-card">
                 <div>
                     <img [src]="course.image" style="width: 220px; height: 140px;">
@@ -25,9 +23,7 @@
                     <button class="btn btn-show">Show Details</button>
                 </div>
             </div>
-        
-        </ng-container>
     </div>  
-</ng-container>
+
 
 
